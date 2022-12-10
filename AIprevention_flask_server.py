@@ -1,6 +1,6 @@
 from flask import Flask, request
 from werkzeug.utils import secure_filename
-# import os
+import os
 # import ctypes
 import subprocess
 
@@ -22,11 +22,15 @@ def get():
     
     # 서버에 저장된 이미지 데이터를 darknet - YoloV4를 사용해서 검출
     
-    # 결과 json을 파싱해서 저장하는 부분    
-    subprocess.call(["./darknet detector test yolofiles/obj.data yolofiles/yolov4.cfg yolofiles/yolov4_4000.weights yolofiles/plants1.jpg -out prediction.json -dont_show"], cwd="/home/ubuntu/darknet")
-    
-
-    subprocess.call(["ls"], cwd="/home/ubuntu/darknet")
+    # 결과 json을 파싱해서 저장하는 부분
+    os.chdir('/home/ubuntu/darknet')
+    os.system("./darknet detector test ./yolofiles/obj.data ./yolofiles/yolov4.cfg ./yolofiles/yolov4_4000.weights ./yolofiles/plants1.jpg -out ./prediction.json -dont_show")
+    #subprocess.call(["ls"], cwd="/home/ubuntu/darknet/yolofiles")
+    #subprocess.call(["pwd"])
+    #subprocess.call(["./darknet detector test /h/yolofiles/obj.data /home/ubuntu/darknet/yolofiles/yolov4.cfg /home/ubuntu/darknet/yolofiles/yolov4_4000.weights /home/ubuntu/darknet/yolofiles/plants1.jpg -out /home/ubuntu/darknet/prediction.json -dont_show"], cwd="/home/ubuntu/darknet")
+    #subprocess.call(["ls"], cwd="/home/ubuntu/darknet")
+    #subprocess.call(["./darknet detector test"])
+    #os.system("./darknet detector test")
     return "this is get test"
 
 
