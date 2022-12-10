@@ -14,6 +14,7 @@ def get():
     print("get 수행됨")
     # os.system('pwd')
     # ctypes.windll.shell32.ShellExecuteA(0, 'open', 'pwd', None, None, 1)
+    subprocess.call(["ls"], cwd="/home/ubuntu/darknet")
     return "this is get test"
 
 
@@ -40,4 +41,5 @@ def upload_file():
 
 #서버 실행
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+    #app.run(debug=True)
